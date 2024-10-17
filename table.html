@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="excelApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmopack</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="images/logo.png" alt="Logo" class="logo">
+            <h1>Cosmopack</h1>
+        </div>
+
+        <div id="QurivWatermark">
+            Powered by Quriv
+        </div>
+        
+        <input type="text" placeholder="Search..." ng-model="searchText" class="search-box">
+        <div class="table-wrapper">
+            <table class="excel-table">
+                <thead>
+                    <tr>
+                        <th ng-repeat="header in headers">{{ header }}</th>
+                        <th>تعديل</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="row in tableData | filter:customFilter">
+                        <td ng-repeat="(key, value) in row">
+                            <div contenteditable="true" ng-blur="showConfirmationModal(row, key, $event)" ng-bind="row[key]"></div>
+                        </td>
+                        <td>
+                            <button ng-click="deleteRow($index)">إزالة</button>
+                            <button ng-click="viewEditHistory(row)">تاريخ التعديلات</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="controls">
+            <button ng-click="addRow()">إضافة</button>
+            <button ng-click="saveData()">إحفظ</button>
+        </div>
+       
+    </div>
+    <div class="custom-modal edit-confirmation-modal" ng-show="showModal">
+        <div class="custom-modal-content">
+            <p> تأكيد اجراء التعديل ؟</p>
+            <button id="modalbtn" ng-click="confirmYes()">نعم</button>
+            <button id="modalbtn" ng-click="confirmNo()">لا</button>
+        </div>
+    </div>
+    <div class="custom-modal history-modal" ng-show="showHistoryModal" ng-click="closeHistoryOnClick($event)">
+        <div class="custom-modal-content">
+            <h3>تاريخ التعديلات</h3>
+            <ul class="edit-history-list">
+                <li class="edit-history-item" ng-repeat="edit in selectedRowEditHistory">
+                    <p><strong>{{ edit.date }}</strong> | Before: {{ edit.before }} | After: {{ edit.after }}</p>
+                </li>
+            </ul>
+           <center> <button id="modalbtn" ng-click="closeHistory()">أغلق</button> </center>
+        </div>
+    </div>
+</body>
+</html>

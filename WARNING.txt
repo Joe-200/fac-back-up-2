@@ -1,0 +1,30 @@
+    Dear Senior Instructor , 
+
+I am just an intern who literally finished Js two months ago , I know how dumb and bad my code is , It is not my fault 
+
+I blame it all on the CEO who for whatever reason thinks such project can be done in 2 days by an intern , 
+
+
+
+So please help with the following : 
+
+1.  Make each of the 4 buttons in (products.html) redirect to the a table similar to the table in (table.html) but with  different 
+
+data ( different Json file ) so each product can have it's own table with it's own data.
+
+
+
+2.  Remove the ( إزالة button ) and replace it with a edit switch that when clicked allows editing data from the table and removing rows 
+
+ so , by default no editing is allowed till edit switch is toggled. ( currently you can edit data by clicking them )
+
+
+
+3.  Finally when clicking the ( تاريخ التعديلات button ) it shows : " before , after and date " of the edit done to a specific row 
+
+however it does not show the category ( كود , اسم , هالك etc... ) that the edit happened to 
+
+so add a category (name of the column where the edit happened )  
+
+
+thanks ..
